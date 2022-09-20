@@ -11,6 +11,67 @@ services:
     ports:
       - "3000:3000"
     tty: true
+  forms-flow-admin:
+    container_name: forms-flow-admin
+    build:
+      context: ../admin/
+      dockerfile: ../admin/Dockerfile
+      args:
+        - NODE_ENV=${NODE_ENV:-development}
+    ports:
+      - "3001:3001"
+    tty: true
+  forms-flow-applications:
+    container_name: forms-flow-applications
+    build:
+      context: ../applications/
+      dockerfile: ../applications/Dockerfile
+      args:
+        - NODE_ENV=${NODE_ENV:-development}
+    ports:
+      - "3002:3002"
+    tty: true
+  forms-flow-dashboards:
+    container_name: forms-flow-dashboards
+    build:
+      context: ../dashboards/
+      dockerfile: ../dashboards/Dockerfile
+      args:
+        - NODE_ENV=${NODE_ENV:-development}
+    ports:
+      - "3005:3005"
+    tty: true
+  forms-flow-forms:
+    container_name: forms-flow-forms
+    build:
+      context: ../forms/
+      dockerfile: ../forms/Dockerfile
+      args:
+        - NODE_ENV=${NODE_ENV:-development}
+    ports:
+      - "3003:3003"
+    tty: true
+  forms-flow-process:
+    container_name: forms-flow-process
+    build:
+      context: ../process/
+      dockerfile: ../process/Dockerfile
+      args:
+        - NODE_ENV=${NODE_ENV:-development}
+    ports:
+      - "3004:3004"
+    tty: true
+  forms-flow-tasks:
+    container_name: forms-flow-tasks
+    build:
+      context: ../tasks/
+      dockerfile: ../tasks/Dockerfile
+      args:
+        - NODE_ENV=${NODE_ENV:-development}
+    ports:
+      - "3006:3006"
+    tty: true
+
   
 
 
