@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  forms-flow-web:
+    container_name: forms-flow-web
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        - NODE_ENV=${NODE_ENV:-development}
+    ports:
+      - "3000:3000"
+    tty: true
+  
+
+
