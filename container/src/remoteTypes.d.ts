@@ -1,31 +1,31 @@
 
 
 declare module "Task/Task" {
-	const CounterAppOne: React.ComponentType;
-	export default CounterAppOne;
+	const Task: React.ComponentType;
+	export default Task;
 }
 
 declare module "Process/Process" {
-	const CounterAppOne: React.ComponentType;
-	export default CounterAppOne;
+	const Process: React.ComponentType;
+	export default Process;
 }
 
 declare module "Forms/Forms" {
-	const CounterAppOne: React.ComponentType;
-	export default CounterAppOne;
+	const Forms: React.ComponentType;
+	export default Forms;
 }
 
 declare module "Dashboards/Dashboards" {
-	const CounterAppOne: React.ComponentType;
-	export default CounterAppOne;
+	const Dashboards: React.ComponentType;
+	export default Dashboards;
 }
 
 declare module "Applications/Applications" {
-	const CounterAppOne: React.ComponentType;
-	export default CounterAppOne;
+	const Applications: React.ComponentType;
+	export default Applications;
 }
 
 declare module "Admin/Admin" {
-	const CounterAppOne: React.ComponentType;
-	export default CounterAppOne;
+	const Admin: React.ComponentType;
+	export default Admin;
 }
