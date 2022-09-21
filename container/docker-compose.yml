@@ -17,6 +17,8 @@ services:
       context: ../admin/
       dockerfile: ../admin/Dockerfile
       args:
+        - COMPONENT_NAME=admin
+        - PORT=3001
         - NODE_ENV=${NODE_ENV:-development}
     ports:
       - "3001:3001"
@@ -27,6 +29,8 @@ services:
       context: ../applications/
       dockerfile: ../applications/Dockerfile
       args:
+        - COMPONENT_NAME=applications
+        - PORT=3002
         - NODE_ENV=${NODE_ENV:-development}
     ports:
       - "3002:3002"
@@ -37,6 +41,8 @@ services:
       context: ../dashboards/
       dockerfile: ../dashboards/Dockerfile
       args:
+        - COMPONENT_NAME=dashboards
+        - PORT=3005
         - NODE_ENV=${NODE_ENV:-development}
     ports:
       - "3005:3005"
@@ -47,6 +53,8 @@ services:
       context: ../forms/
       dockerfile: ../forms/Dockerfile
       args:
+        - COMPONENT_NAME=forms
+        - PORT=3003
         - NODE_ENV=${NODE_ENV:-development}
     ports:
       - "3003:3003"
@@ -57,6 +65,8 @@ services:
       context: ../process/
       dockerfile: ../process/Dockerfile
       args:
+        - COMPONENT_NAME=process
+        - PORT=3004
         - NODE_ENV=${NODE_ENV:-development}
     ports:
       - "3004:3004"
@@ -67,6 +77,8 @@ services:
       context: ../tasks/
       dockerfile: ../tasks/Dockerfile
       args:
+        - COMPONENT_NAME=tasks
+        - PORT=3006
         - NODE_ENV=${NODE_ENV:-development}
     ports:
       - "3006:3006"
@@ -75,3 +87,6 @@ services:
   
 
 
+
+
+  

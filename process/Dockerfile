@@ -1,28 +1,30 @@
 # base image
 FROM node:16.17.0-alpine as build-stage
 
-# set working directory
-WORKDIR /process/app
-
 ARG NODE_ENV
+ARG COMPONENT_NAME
+ARG PORT
+
 ENV NODE_ENV ${NODE_ENV}
 
+# set working directory
+WORKDIR /${COMPONENT_NAME}/app
+
 # add `/app/node_modules/.bin` to $PATH
-ENV PATH /process/app/node_modules/.bin:$PATH
+ENV PATH /${COMPONENT_NAME}/app/node_modules/.bin:$PATH
 
 RUN apk update && apk upgrade && \
     apk add --no-cache bash git openssh
 
 # install and cache app dependencies
-
-COPY webpack.config.js /process/app/webpack.config.js
-COPY package-lock.json /process/app/package-lock.json
-COPY package.json /process/app/package.json
+COPY package-lock.json /${COMPONENT_NAME}/app/package-lock.json
+COPY package.json /${COMPONENT_NAME}/app/package.json
 
 RUN npm ci --production
-COPY . /process/app/
+RUN npm i --save-dev webpack
+COPY . /${COMPONENT_NAME}/app/
 RUN npm run build
+EXPOSE ${PORT}
+CMD ["npm","run", "build:start"]
 
-EXPOSE 3004
-CMD ["npm", "run", "build:start"]
 
