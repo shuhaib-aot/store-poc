@@ -1,5 +1,5 @@
 # base image
-FROM node:18.9.0-alpine3.16 as build-stage
+FROM node:16.17.0-alpine as build-stage
 
 # set working directory
 WORKDIR /container/app
@@ -19,11 +19,14 @@ COPY webpack.config.js /container/app/webpack.config.js
 COPY package-lock.json /container/app/package-lock.json
 COPY package.json /container/app/package.json
 
-RUN npm install
+RUN npm ci --production
 COPY . /container/app/
-RUN npm run build:dev
+RUN npm run build
 
-EXPOSE 3000
-CMD ["npm", "start"]
+FROM nginx:1.22 as production-stage
 
-
+RUN mkdir /app
+COPY --from=build-stage /container/app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/nginx.conf
+EXPOSE 8080:8080
+CMD ["nginx", "-g", "daemon off;"]

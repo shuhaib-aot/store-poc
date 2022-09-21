@@ -1,5 +1,5 @@
 # base image
-FROM node:18.9.0-alpine3.16 as build-stage
+FROM node:16.17.0-alpine as build-stage
 
 # set working directory
 WORKDIR /forms/app
@@ -19,10 +19,10 @@ COPY webpack.config.js /forms/app/webpack.config.js
 COPY package-lock.json /forms/app/package-lock.json
 COPY package.json /forms/app/package.json
 
-RUN npm install
+RUN npm ci --production
 COPY . /forms/app/
-RUN npm run build:dev
+RUN npm run build
 
 EXPOSE 3003
-CMD ["npm", "start"]
+CMD ["npm", "run", "build:start"]
 

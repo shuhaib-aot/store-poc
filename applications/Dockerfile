@@ -1,5 +1,5 @@
 # base image
-FROM node:18.9.0-alpine3.16 as build-stage
+FROM node:16.17.0-alpine as build-stage
 
 # set working directory
 WORKDIR /applications/app
@@ -18,10 +18,10 @@ RUN apk update && apk upgrade && \
 COPY package-lock.json /applications/app/package-lock.json
 COPY package.json /applications/app/package.json
 
-RUN npm install
+RUN npm ci --production
 COPY . /applications/app/
-RUN npm run build:dev
+RUN npm run build
 
 EXPOSE 3002
-CMD ["npm", "start"]
+CMD ["npm","run","build:start"]
 
