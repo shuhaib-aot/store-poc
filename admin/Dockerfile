@@ -20,11 +20,8 @@ RUN apk update && apk upgrade && \
 COPY package-lock.json /${COMPONENT_NAME}/app/package-lock.json
 COPY package.json /${COMPONENT_NAME}/app/package.json
 
-RUN npm ci --production
-RUN npm i --save-dev webpack
+RUN npm ci --include dev
 COPY . /${COMPONENT_NAME}/app/
 RUN npm run build
 EXPOSE ${PORT}
 CMD ["npm","run", "build:start"]
-
-
