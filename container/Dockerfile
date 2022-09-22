@@ -17,8 +17,7 @@ RUN apk update && apk upgrade && \
 COPY package-lock.json /container/app/package-lock.json
 COPY package.json /container/app/package.json
 
-RUN npm ci --production
-RUN npm i --save-dev webpack
+RUN npm ci --include dev
 COPY . /container/app/
 RUN npm run build
 

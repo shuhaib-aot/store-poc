@@ -11,6 +11,8 @@ services:
     ports:
       - "3000:8080"
     tty: true
+    networks:
+      - forms-flow-web-network
   forms-flow-admin:
     container_name: forms-flow-admin
     build:
@@ -23,6 +25,8 @@ services:
     ports:
       - "3001:3001"
     tty: true
+    networks:
+      - forms-flow-web-network
   forms-flow-applications:
     container_name: forms-flow-applications
     build:
@@ -35,6 +39,8 @@ services:
     ports:
       - "3002:3002"
     tty: true
+    networks:
+      - forms-flow-web-network
   forms-flow-dashboards:
     container_name: forms-flow-dashboards
     build:
@@ -47,6 +53,8 @@ services:
     ports:
       - "3005:3005"
     tty: true
+    networks:
+      - forms-flow-web-network
   forms-flow-forms:
     container_name: forms-flow-forms
     build:
@@ -59,6 +67,8 @@ services:
     ports:
       - "3003:3003"
     tty: true
+    networks:
+      - forms-flow-web-network
   forms-flow-process:
     container_name: forms-flow-process
     build:
@@ -71,6 +81,8 @@ services:
     ports:
       - "3004:3004"
     tty: true
+    networks:
+      - forms-flow-web-network
   forms-flow-tasks:
     container_name: forms-flow-tasks
     build:
@@ -83,6 +95,11 @@ services:
     ports:
       - "3006:3006"
     tty: true
+    networks:
+      - forms-flow-web-network
+networks:
+  forms-flow-web-network:
+    driver: 'bridge'
 
   
 
