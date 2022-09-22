@@ -11,11 +11,6 @@ module.exports = {
     extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
   },
 
-  devServer: {
-    port: 3001,
-    historyApiFallback: true,
-  },
-
   module: {
     rules: [
       {

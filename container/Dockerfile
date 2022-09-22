@@ -14,12 +14,10 @@ RUN apk update && apk upgrade && \
     apk add --no-cache bash git openssh
 
 # install and cache app dependencies
-
-COPY webpack.config.js /container/app/webpack.config.js
 COPY package-lock.json /container/app/package-lock.json
 COPY package.json /container/app/package.json
 
-RUN npm ci --production
+RUN npm ci --include dev
 COPY . /container/app/
 RUN npm run build
 
