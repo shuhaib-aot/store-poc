@@ -4,11 +4,16 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 const deps = require("./package.json").dependencies;
 module.exports = {
   output: {
-    publicPath: "http://localhost:3001/",
+    publicPath: "http://localhost:3008/",
   },
 
   resolve: {
     extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
+  },
+
+  devServer: {
+    port: 3008,
+    historyApiFallback: true,
   },
 
   module: {
@@ -22,7 +27,7 @@ module.exports = {
       },
       {
         test: /\.(css|s[ac]ss)$/i,
-        use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"],
+        use: ["style-loader", "css-loader", "postcss-loader"],
       },
       {
         test: /\.(ts|tsx|js|jsx)$/,
@@ -36,13 +41,12 @@ module.exports = {
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "admin",
+      name: "store",
       filename: "remoteEntry.js",
-      remotes: {
-        "store":"store@http://localhost:3008/remoteEntry.js"
-      },
+      remotes: {},
       exposes: {
-        "./Admin":"./src/App"
+        "./StoreService":"./src/storeServices.js",
+        "./userActions":"./src/actions/userDetailsAction.js"
       },
       shared: {
         ...deps,
@@ -57,7 +61,7 @@ module.exports = {
       },
     }),
     new HtmlWebPackPlugin({
-      template: "./public/index.html",
+      template: "./src/index.html",
     }),
   ],
 };
